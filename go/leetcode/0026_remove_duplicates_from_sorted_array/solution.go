@@ -34,8 +34,17 @@ func removeDuplicatesDummy(nums []int) int {
 	return uniqueNumbersCount
 }
 
-// func removeDuplicates(nums []int) int {
-// 	var uniqueNumbersCount int = 0
-// 	for i,
-// 	return uniqueNumbersCount
-// }
+// O(N)
+// 0 ms | Beats 100.00%
+func removeDuplicatesOptimized(nums []int) int {
+	var numsSet map[int]bool = make(map[int]bool)
+	var realSliceIndex int = 0
+	for keyIndex, number := range nums {
+		if !numsSet[number] {
+			numsSet[number] = true
+			nums[realSliceIndex] = nums[keyIndex]
+			realSliceIndex++
+		}
+	}
+	return len(numsSet)
+}

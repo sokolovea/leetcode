@@ -53,14 +53,24 @@ var testDataNums = []struct {
 	{[]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}, 5, []int{0, 1, 2, 3, 4}}, //[0,1,2,3,4,_,_,_,_,_]
 }
 
-func TestRemoveDuplicatesDummy(t *testing.T) {
+type RemoveDuplicates func(nums []int) int
+
+func InternalTestRemoveDuplicates(f RemoveDuplicates, t *testing.T) {
 	for i, data := range testDataNums {
 		inputArray := data.nums
 		t.Logf("Input slice %v", inputArray)
-		result := removeDuplicatesDummy(inputArray)
+		result := f(inputArray)
 		expectedK := data.k
 		expectedArray := data.resultNums
 		assert.Equal(t, expectedK, result, fmt.Sprintf("Test case %d failed: result %v but must be %d", i, result, expectedK))
 		assert.Equal(t, expectedArray[:expectedK], inputArray[:expectedK], fmt.Sprintf("Test case %d failed: result slice %v but must be %v", i, inputArray[:expectedK], expectedArray[:expectedK]))
 	}
+}
+
+func TestRemoveDuplicatesDummy(t *testing.T) {
+	InternalTestRemoveDuplicates(removeDuplicatesDummy, t)
+}
+
+func TestRemoveDuplicatesOptimized(t *testing.T) {
+	InternalTestRemoveDuplicates(removeDuplicatesOptimized, t)
 }
