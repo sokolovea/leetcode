@@ -21,7 +21,7 @@ var testDataShiftSlice = []struct {
 
 type mergeTwoListsType func(*ListNode, *ListNode) *ListNode
 
-func ReverseListInnerTest(t *testing.T, mergeFunc mergeTwoListsType) {
+func reverseListInnerTest(t *testing.T, mergeFunc mergeTwoListsType) {
 	for i, data := range testDataShiftSlice {
 		var firstList *ListNode = nil
 		var secondList *ListNode = nil
@@ -53,9 +53,45 @@ func ReverseListInnerTest(t *testing.T, mergeFunc mergeTwoListsType) {
 }
 
 func TestReverseList(t *testing.T) {
-	ReverseListInnerTest(t, mergeTwoLists)
+	reverseListInnerTest(t, mergeTwoLists)
 }
 
 func TestReverseListRecursive(t *testing.T) {
-	ReverseListInnerTest(t, mergeTwoListsRecursive)
+	reverseListInnerTest(t, mergeTwoListsRecursive)
+}
+
+func twoListsMergeInnerBenchmark(b *testing.B, mergeFunc mergeTwoListsType) {
+	b.StopTimer()
+	var firstList *ListNode = nil
+	var secondList *ListNode = nil
+
+	var firstCounter int = 0
+	var secondCounter int = 0
+
+	for i := 0; i < 100000; i++ {
+		tempList := new(ListNode)
+		tempList.Next = firstList
+		tempList.Val = firstCounter
+		firstList = tempList
+		firstCounter++
+	}
+
+	for i := 0; i < 100000; i++ {
+		tempList := new(ListNode)
+		tempList.Next = secondList
+		tempList.Val = secondCounter
+		secondList = tempList
+		secondCounter = secondCounter + 2
+	}
+	b.ResetTimer()
+	b.StartTimer()
+	_ = mergeFunc(firstList, secondList)
+}
+
+func BenchmarkTwoListsMergeList(b *testing.B) {
+	twoListsMergeInnerBenchmark(b, mergeTwoLists)
+}
+
+func BenchmarkTwoListsMergeRecursiveList(b *testing.B) {
+	twoListsMergeInnerBenchmark(b, mergeTwoListsRecursive)
 }
