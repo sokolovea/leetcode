@@ -41,8 +41,8 @@ func preorderTraversalInternal(rootPtr *TreeNode, resultSlice *[]int) {
 	if rootPtr == nil {
 		return
 	}
-	preorderTraversalInternal(rootPtr.Left, resultSlice)
 	*resultSlice = append(*resultSlice, (*rootPtr).Val)
+	preorderTraversalInternal(rootPtr.Left, resultSlice)
 	preorderTraversalInternal(rootPtr.Right, resultSlice)
 }
 
