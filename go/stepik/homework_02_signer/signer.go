@@ -8,50 +8,57 @@ import (
 	"sync"
 )
 
-var mutexCrc32 sync.Mutex
+var mutexMd5 sync.Mutex
+var crc32ResultsMap map[string]string = make(map[string]string)
 
 var SingleHash job = func(in, out chan interface{}) {
 	fmt.Printf("SingleHash!!!\n")
-	var wg sync.WaitGroup
+	var wgCrc32 sync.WaitGroup
+	var wgSingleHash sync.WaitGroup
 	for {
 		data, ok := <-in
 		if !ok {
 			fmt.Println("Канал SingleHash закрыт")
 			break
 		}
-		fmt.Printf("SingleHash get data!\n")
-		dataString, ok := data.(string)
-		if !ok {
-			dataInt, ok := data.(int)
+		wgSingleHash.Add(1)
+		go func() {
+			fmt.Printf("SingleHash get data!\n")
+			dataString, ok := data.(string)
 			if !ok {
-				fmt.Printf("SingleHash not ok!\n")
-				continue
+				dataInt, ok := data.(int)
+				if !ok {
+					fmt.Printf("SingleHash not ok!\n")
+					return
+				}
+				dataString = strconv.Itoa(dataInt)
 			}
-			dataString = strconv.Itoa(dataInt)
-		}
-		fmt.Printf("SingleHash: data = %v \n", dataString)
-		mutexCrc32.Lock()
-		preResult := DataSignerMd5(dataString)
-		mutexCrc32.Unlock()
-		wg.Add(2)
-		var firstSum string
-		var secondSum string
-		go func() {
-			firstSum = DataSignerCrc32(dataString)
-			wg.Done()
+			fmt.Printf("SingleHash: data = %v \n", dataString)
+			wgCrc32.Add(2)
+			var firstSum string
+			var secondSum string
+			go func() {
+				firstSum = DataSignerCrc32(dataString)
+				wgCrc32.Done()
+			}()
+			go func() {
+				mutexMd5.Lock()
+				preResult := DataSignerMd5(dataString)
+				mutexMd5.Unlock()
+				secondSum = DataSignerCrc32(preResult)
+				wgCrc32.Done()
+			}()
+			wgCrc32.Wait()
+			out <- firstSum + "~" + secondSum
+			wgSingleHash.Done()
 		}()
-		go func() {
-			secondSum = DataSignerCrc32(preResult)
-			wg.Done()
-		}()
-		wg.Wait()
-		out <- firstSum + "~" + secondSum
 	}
+	wgSingleHash.Wait()
 }
 
 var MultiHash job = func(in, out chan interface{}) {
 	fmt.Printf("MultiHash!!!\n")
-	preResult := make([]string, 6)
+	var wgMultiHash sync.WaitGroup
 	for {
 		data, ok := <-in
 		if !ok {
@@ -64,19 +71,25 @@ var MultiHash job = func(in, out chan interface{}) {
 			fmt.Printf("MultiHash data not ok!\n")
 			continue
 		}
-		var wg sync.WaitGroup
-		wg.Add(6)
-		for th := 0; th <= 5; th++ {
-			go func() {
-				preResult[th] = DataSignerCrc32(strconv.Itoa(th) + dataString)
-				wg.Done()
-			}()
-		}
-		wg.Wait()
-		preResult := strings.Join(preResult, "")
-		fmt.Printf("MultiHash: data = %v \n", preResult)
-		out <- preResult
+		wgMultiHash.Add(1)
+		go func(dataStringCopy string) {
+			preResult := make([]string, 6)
+			var wg sync.WaitGroup
+			wg.Add(6)
+			for th := 0; th <= 5; th++ {
+				go func() {
+					preResult[th] = DataSignerCrc32(strconv.Itoa(th) + dataStringCopy)
+					wg.Done()
+				}()
+			}
+			wg.Wait()
+			result := strings.Join(preResult, "")
+			fmt.Printf("MultiHash: data = %v \n", result)
+			out <- result
+			wgMultiHash.Done()
+		}(dataString)
 	}
+	wgMultiHash.Wait()
 }
 
 var CombineResults job = func(in, out chan interface{}) {
