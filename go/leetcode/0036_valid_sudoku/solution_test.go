@@ -62,3 +62,9 @@ func TestIsValidSudoku(t *testing.T) {
 		assert.Equal(t, data.result, result, fmt.Sprintf("Test case %d failed: result for \"%v\" = %v but really is %v!", i, data.inputSudoku, result, data.result))
 	}
 }
+
+func BenchmarkSudokuFunctional(b *testing.B) {
+	for _, data := range testDataSudoku {
+		_ = isValidSudoku(data.inputSudoku)
+	}
+}
