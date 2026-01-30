@@ -1,0 +1,72 @@
+=== RUN   TestThirdMaxDummy
+--- PASS: TestThirdMaxDummy (0.00s)
+=== RUN   TestThirdMaxOptimized
+--- PASS: TestThirdMaxOptimized (0.00s)
+goos: linux
+goarch: amd64
+pkg: github.com/sokolovea/code_practice/0414_third_maximum_number
+cpu: AMD Ryzen 7 7730U with Radeon Graphics         
+BenchmarkThirdMaxDummy
+BenchmarkThirdMaxDummy/size-2
+BenchmarkThirdMaxDummy/size-2-16         	     100	      6598 ns/op	      56 B/op	       2 allocs/op
+BenchmarkThirdMaxDummy/size-4
+BenchmarkThirdMaxDummy/size-4-16         	     100	      6495 ns/op	      56 B/op	       2 allocs/op
+BenchmarkThirdMaxDummy/size-8
+BenchmarkThirdMaxDummy/size-8-16         	     100	      6876 ns/op	      56 B/op	       2 allocs/op
+BenchmarkThirdMaxDummy/size-16
+BenchmarkThirdMaxDummy/size-16-16        	     100	      7147 ns/op	      56 B/op	       2 allocs/op
+BenchmarkThirdMaxDummy/size-32
+BenchmarkThirdMaxDummy/size-32-16        	     100	      7625 ns/op	      56 B/op	       2 allocs/op
+BenchmarkThirdMaxDummy/size-64
+BenchmarkThirdMaxDummy/size-64-16        	     100	      9575 ns/op	      56 B/op	       2 allocs/op
+BenchmarkThirdMaxDummy/size-128
+BenchmarkThirdMaxDummy/size-128-16       	     100	     12273 ns/op	      56 B/op	       2 allocs/op
+BenchmarkThirdMaxDummy/size-256
+BenchmarkThirdMaxDummy/size-256-16       	     100	     21535 ns/op	      56 B/op	       2 allocs/op
+BenchmarkThirdMaxDummy/size-512
+BenchmarkThirdMaxDummy/size-512-16       	     100	     35035 ns/op	      56 B/op	       2 allocs/op
+BenchmarkThirdMaxDummy/size-1024
+BenchmarkThirdMaxDummy/size-1024-16      	     100	     73550 ns/op	      56 B/op	       2 allocs/op
+BenchmarkThirdMaxDummy/size-4096
+BenchmarkThirdMaxDummy/size-4096-16      	     100	    556220 ns/op	      56 B/op	       2 allocs/op
+BenchmarkThirdMaxDummy/size-16384
+BenchmarkThirdMaxDummy/size-16384-16     	     100	   2797773 ns/op	      56 B/op	       2 allocs/op
+BenchmarkThirdMaxDummy/size-65536
+BenchmarkThirdMaxDummy/size-65536-16     	     100	  12576972 ns/op	      56 B/op	       2 allocs/op
+BenchmarkThirdMaxDummy/size-262144
+BenchmarkThirdMaxDummy/size-262144-16    	     100	  56608991 ns/op	      56 B/op	       2 allocs/op
+BenchmarkThirdMaxDummy/size-1048576
+BenchmarkThirdMaxDummy/size-1048576-16   	     100	 251960472 ns/op	      56 B/op	       2 allocs/op
+BenchmarkThirdMaxOptimize
+BenchmarkThirdMaxOptimize/size-2
+BenchmarkThirdMaxOptimize/size-2-16      	     100	        27.55 ns/op	       0 B/op	       0 allocs/op
+BenchmarkThirdMaxOptimize/size-4
+BenchmarkThirdMaxOptimize/size-4-16      	     100	        38.67 ns/op	       0 B/op	       0 allocs/op
+BenchmarkThirdMaxOptimize/size-8
+BenchmarkThirdMaxOptimize/size-8-16      	     100	        64.52 ns/op	       0 B/op	       0 allocs/op
+BenchmarkThirdMaxOptimize/size-16
+BenchmarkThirdMaxOptimize/size-16-16     	     100	        91.47 ns/op	       0 B/op	       0 allocs/op
+BenchmarkThirdMaxOptimize/size-32
+BenchmarkThirdMaxOptimize/size-32-16     	     100	       172.7 ns/op	       0 B/op	       0 allocs/op
+BenchmarkThirdMaxOptimize/size-64
+BenchmarkThirdMaxOptimize/size-64-16     	     100	       435.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkThirdMaxOptimize/size-128
+BenchmarkThirdMaxOptimize/size-128-16    	     100	       816.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkThirdMaxOptimize/size-256
+BenchmarkThirdMaxOptimize/size-256-16    	     100	      1415 ns/op	       0 B/op	       0 allocs/op
+BenchmarkThirdMaxOptimize/size-512
+BenchmarkThirdMaxOptimize/size-512-16    	     100	      2550 ns/op	       0 B/op	       0 allocs/op
+BenchmarkThirdMaxOptimize/size-1024
+BenchmarkThirdMaxOptimize/size-1024-16   	     100	      4909 ns/op	       0 B/op	       0 allocs/op
+BenchmarkThirdMaxOptimize/size-4096
+BenchmarkThirdMaxOptimize/size-4096-16   	     100	     18931 ns/op	       0 B/op	       0 allocs/op
+BenchmarkThirdMaxOptimize/size-16384
+BenchmarkThirdMaxOptimize/size-16384-16  	     100	     76908 ns/op	       0 B/op	       0 allocs/op
+BenchmarkThirdMaxOptimize/size-65536
+BenchmarkThirdMaxOptimize/size-65536-16  	     100	    325690 ns/op	       0 B/op	       0 allocs/op
+BenchmarkThirdMaxOptimize/size-262144
+BenchmarkThirdMaxOptimize/size-262144-16 	     100	   1241009 ns/op	       0 B/op	       0 allocs/op
+BenchmarkThirdMaxOptimize/size-1048576
+BenchmarkThirdMaxOptimize/size-1048576-16         	     100	   4905595 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/sokolovea/code_practice/0414_third_maximum_number	34.573s

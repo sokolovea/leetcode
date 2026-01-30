@@ -1,0 +1,72 @@
+=== RUN   TestThirdMaxDummy
+--- PASS: TestThirdMaxDummy (0.00s)
+=== RUN   TestThirdMaxOptimized
+--- PASS: TestThirdMaxOptimized (0.00s)
+goos: linux
+goarch: amd64
+pkg: github.com/sokolovea/code_practice/0414_third_maximum_number
+cpu: AMD Ryzen 7 7730U with Radeon Graphics         
+BenchmarkThirdMaxDummy
+BenchmarkThirdMaxDummy/size-2
+BenchmarkThirdMaxDummy/size-2-16         	     100	       743.1 ns/op
+BenchmarkThirdMaxDummy/size-4
+BenchmarkThirdMaxDummy/size-4-16         	     100	       949.3 ns/op
+BenchmarkThirdMaxDummy/size-8
+BenchmarkThirdMaxDummy/size-8-16         	     100	       973.2 ns/op
+BenchmarkThirdMaxDummy/size-16
+BenchmarkThirdMaxDummy/size-16-16        	     100	      1449 ns/op
+BenchmarkThirdMaxDummy/size-32
+BenchmarkThirdMaxDummy/size-32-16        	     100	      2292 ns/op
+BenchmarkThirdMaxDummy/size-64
+BenchmarkThirdMaxDummy/size-64-16        	     100	      3388 ns/op
+BenchmarkThirdMaxDummy/size-128
+BenchmarkThirdMaxDummy/size-128-16       	     100	      6828 ns/op
+BenchmarkThirdMaxDummy/size-256
+BenchmarkThirdMaxDummy/size-256-16       	     100	     13345 ns/op
+BenchmarkThirdMaxDummy/size-512
+BenchmarkThirdMaxDummy/size-512-16       	     100	     37459 ns/op
+BenchmarkThirdMaxDummy/size-1024
+BenchmarkThirdMaxDummy/size-1024-16      	     100	     68763 ns/op
+BenchmarkThirdMaxDummy/size-4096
+BenchmarkThirdMaxDummy/size-4096-16      	     100	    554507 ns/op
+BenchmarkThirdMaxDummy/size-16384
+BenchmarkThirdMaxDummy/size-16384-16     	     100	   2774848 ns/op
+BenchmarkThirdMaxDummy/size-65536
+BenchmarkThirdMaxDummy/size-65536-16     	     100	  12600056 ns/op
+BenchmarkThirdMaxDummy/size-262144
+BenchmarkThirdMaxDummy/size-262144-16    	     100	  56488697 ns/op
+BenchmarkThirdMaxDummy/size-1048576
+BenchmarkThirdMaxDummy/size-1048576-16   	     100	 251033420 ns/op
+BenchmarkThirdMaxOptimize
+BenchmarkThirdMaxOptimize/size-2
+BenchmarkThirdMaxOptimize/size-2-16      	     100	        24.04 ns/op
+BenchmarkThirdMaxOptimize/size-4
+BenchmarkThirdMaxOptimize/size-4-16      	     100	        36.16 ns/op
+BenchmarkThirdMaxOptimize/size-8
+BenchmarkThirdMaxOptimize/size-8-16      	     100	       122.9 ns/op
+BenchmarkThirdMaxOptimize/size-16
+BenchmarkThirdMaxOptimize/size-16-16     	     100	       103.0 ns/op
+BenchmarkThirdMaxOptimize/size-32
+BenchmarkThirdMaxOptimize/size-32-16     	     100	       171.4 ns/op
+BenchmarkThirdMaxOptimize/size-64
+BenchmarkThirdMaxOptimize/size-64-16     	     100	       344.0 ns/op
+BenchmarkThirdMaxOptimize/size-128
+BenchmarkThirdMaxOptimize/size-128-16    	     100	       659.8 ns/op
+BenchmarkThirdMaxOptimize/size-256
+BenchmarkThirdMaxOptimize/size-256-16    	     100	      1251 ns/op
+BenchmarkThirdMaxOptimize/size-512
+BenchmarkThirdMaxOptimize/size-512-16    	     100	      2405 ns/op
+BenchmarkThirdMaxOptimize/size-1024
+BenchmarkThirdMaxOptimize/size-1024-16   	     100	      4807 ns/op
+BenchmarkThirdMaxOptimize/size-4096
+BenchmarkThirdMaxOptimize/size-4096-16   	     100	     18951 ns/op
+BenchmarkThirdMaxOptimize/size-16384
+BenchmarkThirdMaxOptimize/size-16384-16  	     100	     75187 ns/op
+BenchmarkThirdMaxOptimize/size-65536
+BenchmarkThirdMaxOptimize/size-65536-16  	     100	    305124 ns/op
+BenchmarkThirdMaxOptimize/size-262144
+BenchmarkThirdMaxOptimize/size-262144-16 	     100	   1222874 ns/op
+BenchmarkThirdMaxOptimize/size-1048576
+BenchmarkThirdMaxOptimize/size-1048576-16         	     100	   4907615 ns/op
+PASS
+ok  	github.com/sokolovea/code_practice/0414_third_maximum_number	34.451s
